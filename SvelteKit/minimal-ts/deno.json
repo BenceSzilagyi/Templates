@@ -1,13 +1,11 @@
 {
-	"type": "module",
 	"tasks": {
 		"dev": "cmd /c cls & deno run -A npm:vite dev",
 		"build": "cmd /c cls & deno run -A npm:vite build",
 		"preview": "deno run -A npm:vite preview",
-		"prepare": "svelte-kit sync || echo ''",
-		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
-		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch"
+		"test": "cmd /c cls & deno test -A",
 	},
+	"nodeModulesDir": "auto",
 	"imports": {
 		"@sveltejs/adapter-auto": "npm:@sveltejs/adapter-auto@^7.0.1",
 		"@sveltejs/kit": "npm:@sveltejs/kit@^2.63.0",
@@ -16,5 +14,39 @@
 		"svelte-check": "npm:svelte-check@^4.6.0",
 		"typescript": "npm:typescript@^6.0.3",
 		"vite": "npm:vite@^8.0.16",
+	},
+	"fmt": {
+		"exclude": [
+			"./**/*.svelte"
+		],
+		"include": [
+			"./**/*.css",
+			"./**/*.html",
+			"./**/*.json",
+			"./**/*.js",
+			"./**/*.ts"
+		],
+		"lineWidth": 4294967295,
+		"indentWidth": 3,
+		"proseWrap": "never",
+		"singleQuote": true,
+		"useTabs": true
+	},
+	"compilerOptions": {
+		"rootDirs": [
+			".",
+			"./.svelte-kit/types"
+		],
+		"verbatimModuleSyntax": true,
+		"lib": [
+			"deno.ns",
+			"DOM",
+			"DOM.Iterable",
+			"esnext"
+		],
+		"types": [
+			"./.svelte-kit/ambient.d.ts",
+			"./.svelte-kit/non-ambient.d.ts"
+		]
 	},
 }
